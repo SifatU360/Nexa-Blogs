@@ -1,18 +1,28 @@
+"use client";
+
+import { useGetBlogsQuery } from '@/redux/apis/blogs.slice';
 import BlogCard from '@/components/ui/BlogCard';
 import { Blog } from '@/types';
-import { Metadata } from 'next';
+// import { Metadata } from 'next';
 import React from 'react';
+import Spinner from '@/components/ui/Spinner';
 
-export const metadata: Metadata = {
-    title: 'NexaBlog | Blogs',
-    description: 'Explore a world of tech insights, tutorials, and trends with NexaBlog. Stay updated with our latest articles on programming, AI, cybersecurity, and more.',
-}
+// export const metadata: Metadata = {
+//     title: 'NexaBlog | Blogs',
+//     description: 'Explore a world of tech insights, tutorials, and trends with NexaBlog. Stay updated with our latest articles on programming, AI, cybersecurity, and more.',
+// }
 
-const BlogsPage = async () => {
-    const res = await fetch("http://localhost:5000/blogs",{
-        cache: 'no-store',
-    });
-    const blogs = await res.json();
+const BlogsPage = () => {
+    // const res = await fetch("http://localhost:5000/blogs",{
+    //     cache: 'no-store',
+    // });
+    // const blogs = await res.json();
+
+    const {data:blogs, isLoading} = useGetBlogsQuery({});
+    // console.log("Data: ", data, isLoading);
+    if(isLoading){
+        return <Spinner />;
+    }
     return (
         <div>
             <h1 className="text-3xl text-center my-5 font-bold mt-10">

@@ -15,7 +15,7 @@ const BlogDetailsPage = async({params} : {params: Promise<{blogId: string}>}) =>
     });
     const blog =  await res.json();
     return (
-        <div className='my-10 px-5 md:px-0'>
+        <div className='my-10'>
             <BlogDetailsCard blog={blog}/>
         </div>
     );
